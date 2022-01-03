@@ -1,5 +1,9 @@
 ;-----------------------------------------
 ; AutoHotKey Script for Almost Complete Mac Keyboard Transformation for Windows 11
+; AutoHotKey Version:		1.x
+; Language:					English
+; Platform:					Windows 10/11
+; Author:					TheBitStick
 ;=========================================
 
 ; --------------------------------------------------------------
@@ -33,8 +37,8 @@ RegWrite, REG_DWORD, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersio
 ; Base System Remappings
 ; --------------------------------------------------------------
 
-~Alt::							Send, {Alt}
 LWin::							LCtrl
+Alt::							return
 CapsLock::						return
 
 
@@ -141,6 +145,11 @@ F12::							Volume_Up
 
 #BS::							Send, {LShift Down}{Home}{LShift Up}{Del}
 !BS::							Send, {LCtrl Down}{BS}{LCtrl Up}
+
+
+; --------------------------------------------------------------
+; Special Characters
+; --------------------------------------------------------------
 
 !-::							Send, {U+2013}
 !+-::							Send, {U+2014}
