@@ -10,10 +10,10 @@
 ; Key
 ; --------------------------------------------------------------
 
-; ! = ALT (Option)
-; ^ = CTRL (Control)
-; + = SHIFT (Shift)
-; # = WIN (Command)
+; ! = Option
+; ^ = Control
+; + = Shift
+; # = Meta (Command)
 
 
 ; --------------------------------------------------------------
@@ -38,8 +38,44 @@ RegWrite, REG_DWORD, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersio
 ; --------------------------------------------------------------
 
 LWin::							LCtrl
-Alt::							return
+LAlt::							return
 CapsLock::						return
+
+
+; --------------------------------------------------------------
+; Additional System Remappings
+; --------------------------------------------------------------
+
+#+z::							Send, ^y
+#!Esc::							Send, ^+{Esc}
+#^Space::						Run, charmap.exe ; buggy, be sure to press Command first before pressing Control
+#^f::							Send, {F11}
+LWin & Tab::					AltTab
+#+3::							Send, #{PrintScreen}
+#+4::							Send, #+s
+#,::							Send, ^,
+
+#^q::							DllCall("LockWorkStation")
+#+q::							DllCall("ExitWindowsEx")
+
+#!v::
+	if WinActive("ahk_exe explorer.exe")
+								Send, ^v
+	else
+								Send, ^!v
+	return
+#[::							Send, !{Left}
+#]::							Send, !{Right}
+#^Up::							Send, !{Up}
+#+BS::							FileRecycleEmpty
+#!+BS::							FileRecycleEmpty
+#F3::							Send, #d
+#+{::							Send, ^l
+#+}::							Send, ^r
+#+\::							Send, ^e
+#!f::							Send, ^f
+#!c::							Send, ^!c
+#!+v::							Send, ^!+v
 
 
 ; --------------------------------------------------------------
@@ -54,49 +90,85 @@ CapsLock::						return
 #f::							Send, ^f
 #g::							Send, ^g
 #h::							Send, ^h
-#i::							Send, ^i
+#i::
+	if WinActive("ahk_exe explorer.exe")
+								Send, !{Enter}
+	else
+								Send, ^i
+	return
 #j::							Send, ^j
 #k::							Send, ^k
 #l::							Send, ^l
+#m::							WinMinimize, A
 #n::							Send, ^n
-#o::							Send, ^o
+#o::
+	if WinActive("ahk_exe explorer.exe")
+								Send, {Enter}
+	else
+								Send, ^o
+	return
 #p::							Send, ^p
+#q::							Send, !{F4}
 #r::							Send, ^r
 #s::							Send, ^s
 #t::							Send, ^t
-#u::							Send, ^u
+#u::
+	if WinActive("ahk_exe explorer.exe")
+								Send, {F2}
+	else
+								Send, ^u
+	return
 #v::							Send, ^v
 #w::							Send, ^w
 #x::							Send, ^x
 #y::							Send, ^y
 #z::							Send, ^z
 
-#1::							Send, ^1
-#2::							Send, ^2
-#3::							Send, ^3
-#4::							Send, ^4
-#5::							Send, ^5
+#+a::							Send, ^+a
+#+i::							Send, ^+i
+#+j::							Send, ^+j
+#+m::							Send, ^+m
+#+n::							Send, ^+n
+#+p::							Send, ^+p
+#+s::							Send, ^+s
+#+t::							Send, ^+t
+#+v::							Send, ^+v
+
+#1::
+	if WinActive("ahk_exe explorer.exe")
+								Send, ^+3
+	else
+								Send, ^1
+	return
+#2::
+	if WinActive("ahk_exe explorer.exe")
+								Send, ^+5
+	else
+								Send, ^2
+	return
+#3::
+	if WinActive("ahk_exe explorer.exe")
+								Send, ^+8
+	else
+								Send, ^3
+	return
+#4::
+	if WinActive("ahk_exe explorer.exe")
+								Send, ^+1
+	else
+								Send, ^4
+	return
+#5::
+	if WinActive("ahk_exe explorer.exe")
+								Send, ^+6
+	else
+								Send, ^5
+	return
 #6::							Send, ^6
 #7::							Send, ^7
 #8::							Send, ^8
 #9::							Send, ^9
 #0::							Send, ^0
-
-#+i::							Send, ^+i
-#+m::							Send, ^+m
-#+n::							Send, ^+n
-#+p::							Send, ^+p
-#+t::							Send, ^+t
-#+v::							Send, ^+v
-#+z::							Send, ^y
-
-
-; --------------------------------------------------------------
-; Screenshot Remappings
-; --------------------------------------------------------------
-
-#+3::							Send, #{PrintScreen}
-#+4::							Send, #+s
 
 
 ; --------------------------------------------------------------
@@ -129,8 +201,18 @@ F12::							Volume_Up
 								Send, {End}
 	return
 
-#Up::							Send, {LCtrl Down}{Home}{LCtrl Up}
-#Down::						Send, {LCtrl Down}{End}{LCtrl Up}
+#Up::
+	if WinActive("ahk_exe explorer.exe")
+								Send, !{Up}
+	else
+								Send, {LCtrl Down}{Home}{LCtrl Up}
+	return
+#Down::
+	if WinActive("ahk_exe explorer.exe")
+								Send, {Enter}
+	else
+								Send, {LCtrl Down}{End}{LCtrl Up}
+	return
 
 #+Left::						Send, {Shift Down}{Home}{Shift Up}
 #+Right::						Send, {Shift Down}{End}{Shift Up}
@@ -143,12 +225,17 @@ F12::							Volume_Up
 !+Left::						Send, {Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}
 !+Right::						Send, {Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}
 
-#BS::							Send, {LShift Down}{Home}{LShift Up}{Del}
-!BS::							Send, {LCtrl Down}{BS}{LCtrl Up}
+#BS::
+	if WinActive("ahk_exe explorer.exe")
+								Send, {Del}
+	else
+								Send, {LShift Down}{Home}{LShift Up}{Del}
+	return
+!BS::							Send, {LCtrl Down}{BS}{LCtrl Up} ; currently non-working due to LAlt disablement
 
 
 ; --------------------------------------------------------------
-; Special Characters
+; Special Characters (sorry I'm American, no diacritics)
 ; --------------------------------------------------------------
 
 !-::							Send, {U+2013}
@@ -156,24 +243,10 @@ F12::							Volume_Up
 
 
 ; --------------------------------------------------------------
-; For Mozilla Firefox
-; --------------------------------------------------------------
-
-#IfWinActive ahk_class MozillaWindowClass
-#]::							Send, !{Left}
-#[::							Send, !{Right}
-#IfWinActive
-
-
-; --------------------------------------------------------------
 ; Etc
 ; --------------------------------------------------------------
 
-#,::							Send, ^,
-#q::							Send, !{F4}
-LWin & Enter::					Send, ^{Enter}
+#Enter::						Send, ^{Enter}
+#+Enter::						Send, ^+{Enter}
 LWin & LButton::				Send, {Ctrl Down}{Click}{Ctrl Up}
-
-#m::							WinMinimize, A
-LWin & Tab::					AltTab
 LCtrl & LButton::				Click, Right
