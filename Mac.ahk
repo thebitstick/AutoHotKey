@@ -78,6 +78,7 @@ CapsLock::						return
 #9::							Send, ^9
 #0::							Send, ^0
 
+#+i::							Send, ^+i
 #+m::							Send, ^+m
 #+n::							Send, ^+n
 #+p::							Send, ^+p
@@ -125,7 +126,7 @@ F12::							Volume_Up
 	return
 
 #Up::							Send, {LCtrl Down}{Home}{LCtrl Up}
-#Down::							Send, {LCtrl Down}{End}{LCtrl Up}
+#Down::						Send, {LCtrl Down}{End}{LCtrl Up}
 
 #+Left::						Send, {Shift Down}{Home}{Shift Up}
 #+Right::						Send, {Shift Down}{End}{Shift Up}
@@ -161,7 +162,7 @@ F12::							Volume_Up
 
 #,::							Send, ^,
 #q::							Send, !{F4}
-#Enter::						Send, {LCtrl & Enter}
+LWin & Enter::					Send, ^{Enter}
 LWin & LButton::				Send, {Ctrl Down}{Click}{Ctrl Up}
 
 #m::							WinMinimize, A
