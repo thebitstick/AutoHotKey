@@ -1,4 +1,4 @@
-;-----------------------------------------
+﻿;-----------------------------------------
 ; AutoHotKey Script for Almost Complete Mac Keyboard Transformation for Windows 11
 ; AutoHotKey Version:		1.x
 ; Language:					English
@@ -52,7 +52,7 @@ CapsLock::						return
 #!Esc::							Send, ^+{Esc}
 #^Space::						Run, charmap.exe ; buggy, be sure to press Command first before pressing Control
 #^f::							Send, {F11}
-LWin & Tab::					AltTab
+<#Tab::							AltTab
 #+3::							Send, #{PrintScreen}
 #+4::							Send, #+s
 #,::							Send, ^,
@@ -253,8 +253,8 @@ LAlt & -::						Send, —
 
 #Enter::						Send, ^{Enter}
 #+Enter::						Send, ^+{Enter}
-LWin & LButton::				Send, {Ctrl Down}{Click}{Ctrl Up}
-LCtrl & LButton::				Click, Right
+<#LButton::					Send, {Ctrl Down}{Click}{Ctrl Up}
+<^LButton::						Click, Right
 
 
 ; --------------------------------------------------------------
