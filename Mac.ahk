@@ -60,12 +60,10 @@ CapsLock::						return
 #^q::							DllCall("LockWorkStation")
 #+q::							DllCall("ExitWindowsEx")
 
-#!v::
-	if WinActive("ahk_exe explorer.exe")
-								Send, ^v
-	else
-								Send, ^!v
-	return
+#!v::							Send, ^!v
+	#IfWinActive ahk_exe explorer.exe
+		#!v::					Send, ^v
+	#IfWinActive
 #[::							Send, !{Left}
 #]::							Send, !{Right}
 #^Up::							Send, !{Up}
@@ -92,34 +90,28 @@ CapsLock::						return
 #f::							Send, ^f
 #g::							Send, ^g
 #h::							Send, ^h
-#i::
-	if WinActive("ahk_exe explorer.exe")
-								Send, !{Enter}
-	else
-								Send, ^i
-	return
+#i::							Send, ^i
+	#IfWinActive ahk_exe explorer.exe
+		#i::					Send, !{Enter}
+	#IfWinActive
 #j::							Send, ^j
 #k::							Send, ^k
 #l::							Send, ^l
 #m::							WinMinimize, A
 #n::							Send, ^n
-#o::
-	if WinActive("ahk_exe explorer.exe")
-								Send, {Enter}
-	else
-								Send, ^o
-	return
+#o::							Send, ^o
+	#IfWinActive ahk_exe explorer.exe
+		#o::					Send, {Enter}
+	#IfWinActive
 #p::							Send, ^p
 #q::							Send, !{F4}
 #r::							Send, ^r
 #s::							Send, ^s
 #t::							Send, ^t
-#u::
-	if WinActive("ahk_exe explorer.exe")
-								Send, {F2}
-	else
-								Send, ^u
-	return
+#u::							Send, ^u
+	#IfWinActive ahk_exe explorer.exe
+		#u::					Send, {F2}
+	#IfWinActive
 #v::							Send, ^v
 #w::							Send, ^w
 #x::							Send, ^x
@@ -136,36 +128,26 @@ CapsLock::						return
 #+t::							Send, ^+t
 #+v::							Send, ^+v
 
-#1::
-	if WinActive("ahk_exe explorer.exe")
-								Send, ^+3
-	else
-								Send, ^1
-	return
-#2::
-	if WinActive("ahk_exe explorer.exe")
-								Send, ^+5
-	else
-								Send, ^2
-	return
-#3::
-	if WinActive("ahk_exe explorer.exe")
-								Send, ^+8
-	else
-								Send, ^3
-	return
-#4::
-	if WinActive("ahk_exe explorer.exe")
-								Send, ^+1
-	else
-								Send, ^4
-	return
-#5::
-	if WinActive("ahk_exe explorer.exe")
-								Send, ^+6
-	else
-								Send, ^5
-	return
+#1::							Send, ^1
+	#IfWinActive ahk_exe explorer.exe
+		#1::					Send, ^+3
+	#IfWinActive
+#2::							Send, ^2
+	#IfWinActive ahk_exe explorer.exe
+		#2::					Send, ^+5
+	#IfWinActive
+#3::							Send, ^3
+	#IfWinActive ahk_exe explorer.exe
+		#3::					Send, ^+8
+	#IfWinActive
+#4::							Send, ^4
+	#IfWinActive ahk_exe explorer.exe
+		#4::					Send, ^+1
+	#IfWinActive
+#5::							Send, ^5
+	#IfWinActive ahk_exe explorer.exe
+		#5::					Send, ^+6
+	#IfWinActive
 #6::							Send, ^6
 #7::							Send, ^7
 #8::							Send, ^8
@@ -189,50 +171,39 @@ F12::							Volume_Up
 ; Text Manipulation
 ; --------------------------------------------------------------
 
-#Left::
-	if WinActive("ahk_exe firefox.exe")
-								Send, !{Left}
-	else
-								Send, {Home}
-	return
+#Left::						Send, {Home}
+	#IfWinActive ahk_exe firefox.exe
+		#Left::				Send, !{Left}
+	#IfWinActive
+#Right::						Send, {End}
+	#IfWinActive ahk_exe firefox.exe
+		#Right::				Send, !{Right}
+	#IfWinActive
 
-#Right::
-	if WinActive("ahk_exe firefox.exe")
-								Send, !{Right}
-	else
-								Send, {End}
-	return
-
-#Up::
-	if WinActive("ahk_exe explorer.exe")
-								Send, !{Up}
-	else
-								Send, {LCtrl Down}{Home}{LCtrl Up}
-	return
-#Down::
-	if WinActive("ahk_exe explorer.exe")
-								Send, {Enter}
-	else
-								Send, {LCtrl Down}{End}{LCtrl Up}
-	return
+#Up::							Send, {LCtrl Down}{Home}{LCtrl Up}
+	#IfWinActive ahk_exe explorer.exe
+		#Up::					Send, !{Up}
+	#IfWinActive
+#Down::							Send, {LCtrl Down}{End}{LCtrl Up}
+	#IfWinActive ahk_exe explorer.exe
+		#Down::					Send, {Enter}
+	#IfWinActive
 
 #+Left::						Send, {Shift Down}{Home}{Shift Up}
 #+Right::						Send, {Shift Down}{End}{Shift Up}
 #+Up::							Send, {Ctrl Down}{Shift Down}{Home}{Shift Up}{Ctrl Up}
 #+Down::						Send, {Ctrl Down}{Shift Down}{End}{Shift Up}{Ctrl Up}
 
-!Left::							Send, {Ctrl Down}{Left}{Ctrl Up}
+!Left::						Send, {Ctrl Down}{Left}{Ctrl Up}
 !Right::						Send, {Ctrl Down}{Right}{Ctrl Up}
 
 !+Left::						Send, {Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}
 !+Right::						Send, {Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}
 
-#BS::
-	if WinActive("ahk_exe explorer.exe")
-								Send, {Del}
-	else
-								Send, {LShift Down}{Home}{LShift Up}{Del}
-	return
+#BS::							Send, {LShift Down}{Home}{LShift Up}{Del}
+	#IfWinActive ahk_exe explorer.exe
+		!BS::					Send, {Del}
+	#IfWinActive
 !BS::							Send, {LCtrl Down}{BS}{LCtrl Up} ; currently non-working due to LAlt disablement
 
 
