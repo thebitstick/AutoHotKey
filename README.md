@@ -6,7 +6,7 @@ Essential Scripts for Mac users stuck on Windows
 
 # Installation
 For those who use Mac keyboards (where the `⌘` key shows up as the `⊞/Meta` key on PCs), use the [Mac.ahk](https://github.com/thebitstick/AutoHotKey/blob/main/Mac.ahk) file.  
-For those with standard PC keyboards (where `Alt/⌥` is the closest key to the space bar), use the [Mac but PC.ahk](https://github.com/thebitstick/AutoHotKey/blob/main/Mac%20but%20PC) file.
+For those with standard PC keyboards (where `Alt/⌥` is the closest key to the space bar), use the [Mac but PC.ahk](https://github.com/thebitstick/AutoHotKey/blob/main/Mac%20but%20PC.ahk) file.
 
 Once AutoHotKey is installed, simply launch the script and it will instantly take affect.
 
