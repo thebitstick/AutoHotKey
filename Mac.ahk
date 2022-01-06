@@ -53,8 +53,8 @@ CapsLock::						return
 #^Space::						Run, charmap.exe ; buggy, be sure to press Command first before pressing Control
 #^f::							Send, {F11}
 <#Tab::							AltTab
-#+3::							Send, #{PrintScreen}
-#+4::							Send, #+s
+#+3::							Send, ~#{PrintScreen}
+#+4::							Send, ~#+s
 #,::							Send, ^,
 
 #^q::							DllCall("LockWorkStation")
@@ -253,7 +253,7 @@ LAlt & -::						Send, —
 
 #Enter::						Send, ^{Enter}
 #+Enter::						Send, ^+{Enter}
-<#LButton::					Send, {Ctrl Down}{Click}{Ctrl Up}
+<#LButton::					Send, ^{Click}
 <^LButton::						Click, Right
 
 
