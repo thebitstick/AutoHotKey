@@ -194,7 +194,7 @@ CapsLock::						return
 !+Up::							Send, {Ctrl Down}{Shift Down}{Home}{Shift Up}{Ctrl Up}
 !+Down::						Send, {Ctrl Down}{Shift Down}{End}{Shift Up}{Ctrl Up}
 
-#Left::						Send, {Ctrl Down}{Left}{Ctrl Up}
+#Left::							Send, {Ctrl Down}{Left}{Ctrl Up}
 #Right::						Send, {Ctrl Down}{Right}{Ctrl Up}
 
 #+Left::						Send, {Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}

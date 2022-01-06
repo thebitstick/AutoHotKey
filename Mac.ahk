@@ -171,9 +171,9 @@ F12::							Volume_Up
 ; Text Manipulation
 ; --------------------------------------------------------------
 
-#Left::						Send, {Home}
+#Left::							Send, {Home}
 	#IfWinActive ahk_exe firefox.exe
-		#Left::				Send, !{Left}
+		#Left::					Send, !{Left}
 	#IfWinActive
 #Right::						Send, {End}
 	#IfWinActive ahk_exe firefox.exe
@@ -194,7 +194,7 @@ F12::							Volume_Up
 #+Up::							Send, {Ctrl Down}{Shift Down}{Home}{Shift Up}{Ctrl Up}
 #+Down::						Send, {Ctrl Down}{Shift Down}{End}{Shift Up}{Ctrl Up}
 
-!Left::						Send, {Ctrl Down}{Left}{Ctrl Up}
+!Left::							Send, {Ctrl Down}{Left}{Ctrl Up}
 !Right::						Send, {Ctrl Down}{Right}{Ctrl Up}
 
 !+Left::						Send, {Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}
@@ -224,7 +224,7 @@ LAlt & -::						Send, —
 
 #Enter::						Send, ^{Enter}
 #+Enter::						Send, ^+{Enter}
-<#LButton::					Send, ^{Click}
+<#LButton::						Send, ^{Click}
 <^LButton::						Click, Right
 
 
