@@ -26,9 +26,11 @@
 SetTitleMatchMode 2
 SendMode Input
 
-if not A_IsAdmin
-	Run *RunAs "%A_ScriptFullPath%"
-return
+if !InStr(A_AhkPath, "_UIA.exe") {
+	newPath := RegExReplace(A_AhkPath, "\.exe", "U" (A_Is64bitOS ? 64 : 32) "_UIA.exe")
+	Run % StrReplace(DllCall("Kernel32\GetCommandLine", "Str"), A_AhkPath, newPath)
+	ExitApp
+}
 
 RegWrite, REG_DWORD, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Policies\System, DisableLockWorkstation, 1
 
@@ -238,10 +240,10 @@ F12::							Volume_Up
 ; Special Characters (sorry I'm American, no diacritics)
 ; --------------------------------------------------------------
 
-LAlt & -::						Send, {U+2013}
+LAlt & -::						Send, –
 
 #If, GetKeyState("LShift", "P")
-LAlt & -::						Send, {U+2014}
+LAlt & -::						Send, —
 #If
 
 
