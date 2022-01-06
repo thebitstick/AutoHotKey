@@ -238,8 +238,11 @@ F12::							Volume_Up
 ; Special Characters (sorry I'm American, no diacritics)
 ; --------------------------------------------------------------
 
-!-::							Send, {U+2013}
-!+-::							Send, {U+2014}
+LAlt & -::						Send, {U+2013}
+
+#If, GetKeyState("LShift", "P")
+LAlt & -::						Send, {U+2014}
+#If
 
 
 ; --------------------------------------------------------------
