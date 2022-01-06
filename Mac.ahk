@@ -253,3 +253,14 @@ LAlt & -::						Send, {U+2014}
 #+Enter::						Send, ^+{Enter}
 LWin & LButton::				Send, {Ctrl Down}{Click}{Ctrl Up}
 LCtrl & LButton::				Click, Right
+
+
+; --------------------------------------------------------------
+; Rectangle (Mac window manager) shortcuts I use
+; --------------------------------------------------------------
+
+^!c::
+	WinGetTitle, windowName, A
+	WinGetPos,,, Width, Height, %windowName%
+    WinMove, %windowName%,, (A_ScreenWidth - Width) / 2, (A_ScreenHeight - Height) / 2
+return
